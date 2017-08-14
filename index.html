@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="stylesheet" href="main.css">-->
+    <style>
+        body, html, canvas {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+            display: block;
+            -ms-content-zooming: none;
+            -ms-touch-action: none;
+            -ms-overflow-style: none;
+            touch-action: none;
+            background-color: #AAA;
+        }
+    </style>
+</head>
+<body>
+<canvas></canvas>
+<script>
+var e=document.getElementsByTagName("canvas")[0],f=e.getContext("2d"),h=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||function(a){return window.setTimeout(a,1E3/60)};function k(){f.clearRect(0,0,e.width,e.height);for(var a=l.length;a--;){var b=l[a];f.fillStyle=b.g;f.beginPath();f.arc(e.width/2+b.coords.x-m.coords.x,e.height/2+b.coords.y-m.coords.y,b.c,0,2*Math.PI);f.fill()}h(k)}window.onresize=function(){e.width=window.innerWidth;e.height=window.innerHeight};
+for(var n=500;n--;)new q({c:2+2*Math.random(),a:(new r(5*(.5<Math.random()?1:-1),5*(.5<Math.random()?1:-1))).random()});onresize();h(k);
+setInterval(function(){for(var a,b=0;b<l.length;b++){for(var c=l[b],t=b+1;t<l.length;t++){var d=l[t],g=v(w(c.coords),d.coords);a=x(g,g);var p=y(w(g),Math.sqrt(x(g,g)));if(a<(c.c+d.c)*(c.c+d.c)&&0!==a){if(c.a.x||c.a.y||d.a.x||d.a.y){g=A(w(p),2*x(c.a,p));var u=A(w(p),x(d.a,p)),z=y(A(w(g),c.b).add(A(w(u),d.b-c.b)),d.b+c.b);v(c.a.add(z).add(u),g);v(d.a.add(z),u)}a=A(p,(c.c+d.c-Math.sqrt(a))/(c.b+d.b));c.coords.add(A(w(a),d.b));v(d.coords,A(a,c.b))}else a=A(g,c.b*d.b/1E13),v(c.a,A(w(a),d.b)),d.a.add(A(a,
+c.b))}c.coords.add(c.a);A(c.a,B)}},1E3/60);function r(a,b){this.x=a;this.y=b}function w(a){return new r(a.x,a.y)}r.prototype.add=function(a){this.x+=a.x;this.y+=a.y;return this};function v(a,b){a.x-=b.x;a.y-=b.y;return a}function y(a,b){a.x/=b;a.y/=b;return a}r.prototype.multiply=function(a){this.x*=a.x;this.y*=a.y;return this};function A(a,b){a.x*=b;a.y*=b;return a}function x(a,b){return a.x*b.x+a.y*b.y}r.prototype.ceil=function(){this.x=Math.ceil(this.x);this.y=Math.ceil(this.y);return this};
+r.prototype.random=function(){this.x*=Math.random();this.y*=Math.random();return this};r.prototype.bound=function(a,b,c){if(this[a]<b)this[a]=Math.min(c,2*b-this[a]);else if(this[a]>c)this[a]=Math.max(b,2*c-this[a]);else return!0};function q(a){a||(a={});this.g=a.g||"black";this.c=a.c||20;this.a=a.a||new r(0,0);this.f=a.f||1;this.b=this.c*this.c*this.f;this.coords=a.coords||v((new r(500,500)).random(),m.coords);l.push(this)}var B=1,l=[],m=new q({f:10,coords:new r(100,100)});
+</script>
+</body>
+</html>
